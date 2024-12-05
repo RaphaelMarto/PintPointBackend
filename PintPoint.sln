@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35303.130
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PintPointDB", "PintPointDB\PintPointDB.sqlproj", "{CE7AE329-DCBC-40FF-BBBD-5176D7E00D3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain_PintPoint", "Domain_PintPoint\Domain_PintPoint.csproj", "{4238924A-2999-4DDF-A96A-BB5CCDC9200C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CORE_PintPoint", "CORE_PintPoint\CORE_PintPoint.csproj", "{7BFCC8EB-E421-4143-87FC-9BC235557EC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_PintPoint", "API_PintPoint\API_PintPoint.csproj", "{2A8C94D0-913C-4733-A09C-3C023FD827CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "INFRA_PintPoint", "INFRA_PintPoint\INFRA_PintPoint.csproj", "{BB1A505F-4A06-4C1B-9C13-9EE4E4D3F3BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Éléments de solution", "Éléments de solution", "{73760D48-80D5-47EB-9527-55A9AD2A7F34}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE7AE329-DCBC-40FF-BBBD-5176D7E00D3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE7AE329-DCBC-40FF-BBBD-5176D7E00D3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE7AE329-DCBC-40FF-BBBD-5176D7E00D3D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{CE7AE329-DCBC-40FF-BBBD-5176D7E00D3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE7AE329-DCBC-40FF-BBBD-5176D7E00D3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE7AE329-DCBC-40FF-BBBD-5176D7E00D3D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{4238924A-2999-4DDF-A96A-BB5CCDC9200C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4238924A-2999-4DDF-A96A-BB5CCDC9200C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4238924A-2999-4DDF-A96A-BB5CCDC9200C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4238924A-2999-4DDF-A96A-BB5CCDC9200C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BFCC8EB-E421-4143-87FC-9BC235557EC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BFCC8EB-E421-4143-87FC-9BC235557EC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BFCC8EB-E421-4143-87FC-9BC235557EC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BFCC8EB-E421-4143-87FC-9BC235557EC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A8C94D0-913C-4733-A09C-3C023FD827CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A8C94D0-913C-4733-A09C-3C023FD827CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A8C94D0-913C-4733-A09C-3C023FD827CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A8C94D0-913C-4733-A09C-3C023FD827CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB1A505F-4A06-4C1B-9C13-9EE4E4D3F3BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB1A505F-4A06-4C1B-9C13-9EE4E4D3F3BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB1A505F-4A06-4C1B-9C13-9EE4E4D3F3BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB1A505F-4A06-4C1B-9C13-9EE4E4D3F3BD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4631C822-3D4B-47C6-96E2-FB6C0E4F7CD8}
+	EndGlobalSection
+EndGlobal

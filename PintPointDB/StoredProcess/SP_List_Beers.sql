@@ -1,0 +1,5 @@
+﻿CREATE PROCEDURE [dbo].[SP_List_Beers]
+AS
+BEGIN
+	SELECT * FROM V_Beers
+END
