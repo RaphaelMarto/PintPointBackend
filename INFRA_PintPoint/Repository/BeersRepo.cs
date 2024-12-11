@@ -12,15 +12,28 @@ namespace INFRA_PintPoint.Service
         {
             _connection = connection;
         }
-        public IEnumerable<Beers> Get()
+        public OffsetResult<Beers> Get(int offset, int limit, string order, string type, string search)
         {
             string storedProcedure = "SP_List_Beers";
-            return _connection.Query<Beers>(storedProcedure);
+            var param = new { Offset = offset, Limit = limit, Order = order, Type = type, Search = search };
+
+            using (var multi = _connection.QueryMultiple(storedProcedure, param))
+            {
+                int total = multi.ReadSingle<int>();
+                IEnumerable<Beers> beers = multi.Read<Beers>().ToList();
+
+                return new OffsetResult<Beers>()
+                {
+                    Results = beers,
+                    Total = total,
+                };
+            }
         }
 
-        public Beers Get(int id)
+        public Beers GetOne(int id)
         {
-            throw new NotImplementedException();
+            string storedProcedure = "SP_GetOne_Beers";
+            return _connection.QuerySingle<Beers>(storedProcedure, new { Id = id });
         }
     }
 }

@@ -60,12 +60,10 @@
     <Folder Include="Vue" />
     <Folder Include="StoredProcess" />
     <Folder Include="Scripts" />
+    <Folder Include="StoredProcess\List" />
+    <Folder Include="StoredProcess\GetOne" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="StoredProcess\SP_List_Beers.sql" />
-    <Build Include="StoredProcess\SP_List_BeerType.sql" />
-    <Build Include="StoredProcess\SP_List_Breweries.sql" />
-    <Build Include="StoredProcess\SP_List_Countries.sql" />
     <Build Include="Vue\V_Beers.sql" />
     <Build Include="Vue\V_BeerType.sql" />
     <Build Include="Vue\V_Breweries.sql" />
@@ -74,6 +72,11 @@
     <Build Include="Tables\BeerType.sql" />
     <Build Include="Tables\Breweries.sql" />
     <Build Include="Tables\Countries.sql" />
+    <Build Include="StoredProcess\GetOne\SP_GetOne_Beers.sql" />
+    <Build Include="StoredProcess\List\SP_List_Beers.sql" />
+    <Build Include="StoredProcess\GetOne\SP_GetOne_BeerType.sql" />
+    <Build Include="StoredProcess\GetOne\SP_GetOne_Breweries.sql" />
+    <Build Include="StoredProcess\GetOne\SP_GetOne_Countries.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />
@@ -81,5 +84,10 @@
   <ItemGroup>
     <None Include="Scripts\Load_Data.sql" />
     <None Include="PintPointDB.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="StoredProcess\List\SP_List_BeerType.sql" />
+    <Build Include="StoredProcess\List\SP_List_Breweries.sql" />
+    <Build Include="StoredProcess\List\SP_List_Countries.sql" />
   </ItemGroup>
 </Project>

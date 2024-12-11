@@ -270,5 +270,8 @@ INSERT INTO Countries ([Id], [Name]) VALUES
 
 INSERT INTO Breweries([Id],[Name], [CompleteADdress], [City], [IdCountry]) VALUES (1,'Test', 'Test', 'TEst', 1);
 
-INSERT INTO Beers ([Id],[Name], [Description], [Price], [Capacity], [AlcholPercent], [IdBeerType], [IdBrewery], [CreatedAt], [UpdatedAt]) 
-VALUES (1,'Jup','',1.2, 25, 5.2, 1, 1, GETDATE(),GETDATE());
+INSERT INTO Beers ([Id],[Name], [Description], [Price], [PictureUrl] , [Capacity], [AlcoholPercent], [IdBeerType], [IdBrewery], [Rating], [CreatedAt], [UpdatedAt]) 
+VALUES (1,'Jup','',1.2, 'https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg', 25, 5.2, 1, 1, 4, GETDATE(),GETDATE()),
+(2,'Aa','',1.2, 'https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg' , 25, 5.2, 2, 1, 4.5, GETDATE(),GETDATE()),
+(3,'Jup3','',1.2, 'https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg' , 25, 5.2, 3, 1, 3, GETDATE(),GETDATE()),
+(4,'Cc','',1.2, 'https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg' , 25, 5.2, 4, 1, 2, GETDATE(),GETDATE());

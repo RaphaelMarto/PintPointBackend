@@ -1,14 +1,11 @@
-﻿using Domain_PintPoint.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CORE_PintPoint.Entities;
+using Domain_PintPoint.Entities;
 
 namespace CORE_PintPoint.Abstraction.IService
 {
     public interface IBeersService
     {
-        IEnumerable<Beers> GetAll();
+        OffsetResult<BeersWithNames> GetAll(int offset, int limit, string order, string type, string search);
+        BeersWithNames GetOne(int id);
     }
 }
