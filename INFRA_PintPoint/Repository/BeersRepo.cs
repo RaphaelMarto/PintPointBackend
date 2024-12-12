@@ -35,5 +35,24 @@ namespace INFRA_PintPoint.Service
             string storedProcedure = "SP_GetOne_Beers";
             return _connection.QuerySingle<Beers>(storedProcedure, new { Id = id });
         }
+
+        public bool post(Beers beers)
+        {
+            string storedProcedure = "SP_Post_Beer";
+            return _connection.Execute(storedProcedure, new
+            {
+                Name = beers.Name,
+                Description = beers.Description,
+                Price = beers.Price,
+                Capacity = beers.Capacity,
+                AlcoholPercent = beers.AlcoholPercent,
+                IdBeerType = beers.IdBeerType,
+                IdBrewery = beers.IdBrewery,
+                PictureUrl = beers.PictureUrl,
+                Rating = beers.Rating,
+                CreatedAt = beers.CreatedAt,
+                UpdatedAt = beers.UpdatedAt,
+            }) > 0;
+        }
     }
 }

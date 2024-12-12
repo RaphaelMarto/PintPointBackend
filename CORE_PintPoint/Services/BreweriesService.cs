@@ -1,6 +1,7 @@
 ﻿using CORE_PintPoint.Abstraction.IRepo;
 using CORE_PintPoint.Abstraction.IService;
 using CORE_PintPoint.Entities;
+using Domain_PintPoint.Entities;
 
 namespace CORE_PintPoint.Services
 {
@@ -31,6 +32,11 @@ namespace CORE_PintPoint.Services
             brewery.CountryName = _CountriesRepo.Get(brewery.IdCountry).Name;
 
             return brewery;
+        }
+
+        public bool Post(Breweries breweries)
+        {
+            return _BreweriesRepo.post(breweries);
         }
     }
 }

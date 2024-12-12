@@ -33,7 +33,13 @@ namespace API_PintPoint.Controllers
         [HttpGet("{id:int}")]
         public IActionResult GetOne([FromRoute] int id)
         {
-            return Ok(_beersService.GetOne(id).ToDTO());
+            return Ok(_beersService.GetOne(id).ToCompleteDTO());
+        }
+
+        [HttpPost]
+        public IActionResult post([FromBody] BeerPost beerPost)
+        {
+            return Ok(_beersService.Post(beerPost.ToDomain()));
         }
     }
 }

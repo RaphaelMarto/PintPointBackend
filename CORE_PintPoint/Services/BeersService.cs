@@ -50,5 +50,10 @@ namespace CORE_PintPoint.Services
 
             return beer;
         }
+
+        public bool Post(Beers beer)
+        {
+            return _BeersRepo.post(beer);
+        }
     }
 }

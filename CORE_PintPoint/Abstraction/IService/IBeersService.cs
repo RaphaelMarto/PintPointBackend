@@ -7,5 +7,6 @@ namespace CORE_PintPoint.Abstraction.IService
     {
         OffsetResult<BeersWithNames> GetAll(int offset, int limit, string order, string type, string search);
         BeersWithNames GetOne(int id);
+        bool Post(Beers beer);
     }
 }

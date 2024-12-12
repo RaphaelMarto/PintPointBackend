@@ -1,6 +1,6 @@
-﻿namespace API_PintPoint.DTOs.Beers
+﻿namespace API_PintPoint.DTOs.Breweries
 {
-    public class BreweriesDTO
+    public class BreweriesCompleteDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -23,5 +23,17 @@ namespace INFRA_PintPoint.Repository
             string storedProcedure = "SP_GetOne_Breweries";
             return _connection.QuerySingle<Breweries>(storedProcedure, new { Id = id });
         }
+
+        public bool post(Breweries breweries)
+        {
+            string storedProcedure = "SP_Post_Brewery";
+            return _connection.Execute(storedProcedure, new
+            {
+                Name = breweries.Name,
+                CompleteAddress = breweries.CompleteAddress,
+                City = breweries.City,
+                IdCountry = breweries.IdCountry
+            }) > 0;
+        }
     }
 }

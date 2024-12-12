@@ -1,4 +1,5 @@
-﻿using API_PintPoint.Mapper;
+﻿using API_PintPoint.DTOs.Breweries;
+using API_PintPoint.Mapper;
 using CORE_PintPoint.Abstraction.IService;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,7 +25,13 @@ namespace API_PintPoint.Controllers
         [HttpGet("{id:int}")]
         public IActionResult Get(int id)
         {
-            return Ok(_breweriesService.GetOne(id).ToDTO());
+            return Ok(_breweriesService.GetOne(id).ToCompleteDTO());
+        }
+
+        [HttpPost]
+        public IActionResult post(BreweriesPost breweriesPost)
+        {
+            return Ok(_breweriesService.Post(breweriesPost.ToDomain()));
         }
     }
 }
