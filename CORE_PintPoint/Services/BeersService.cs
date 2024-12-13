@@ -47,6 +47,7 @@ namespace CORE_PintPoint.Services
             Breweries breweries = _breweriesRepo.Get(beer.IdBrewery);
             beer.BreweryName = breweries.Name;
             beer.CountryName = _countriesRepo.Get(breweries.IdCountry).Name;
+            beer.FlagUrl = _countriesRepo.GetFlag(beer.CountryName).Result;
 
             return beer;
         }
