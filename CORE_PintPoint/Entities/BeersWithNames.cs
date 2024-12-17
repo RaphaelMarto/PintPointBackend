@@ -22,6 +22,7 @@ namespace CORE_PintPoint.Entities
             Rating = b.Rating;
             CreatedAt = b.CreatedAt;
             UpdatedAt = b.UpdatedAt;
+            Rate = b.Rate;
         }
         public string? BeerTypeName { get; set; }
         public string? BreweryName { get; set; }

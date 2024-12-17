@@ -40,6 +40,7 @@ namespace API_PintPoint.Mapper
                 PictureUrl = dto.PictureUrl,
                 FlagUrl = dto.FlagUrl,
                 Rating = dto.Rating,
+                Rate = dto.Rate,
             };
         }
 

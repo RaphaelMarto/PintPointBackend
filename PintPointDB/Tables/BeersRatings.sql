@@ -1,0 +1,14 @@
+﻿CREATE TABLE [dbo].[BeersRatings]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[Rate] DECIMAL(4,2) NOT NULL,
+	[Comment] VARCHAR(1500),
+	[Likes] INT NOT NULL,
+	[IdBeer] INT NOT NULL,
+	[IdUser] INT NOT NULL,
+	[CreatedAt] DATETIME2 NOT NULL,
+	[UpdatedAt] DATETIME2 NOT NULL,
+
+	CONSTRAINT [FK_BeersRatings_Beer] FOREIGN KEY ([IdBeer]) REFERENCES [Beers](Id),
+	CONSTRAINT [FK_BeersRatings_User] FOREIGN KEY ([IdUser]) REFERENCES [Users](Id)
+)

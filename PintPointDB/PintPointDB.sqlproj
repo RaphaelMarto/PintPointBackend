@@ -80,6 +80,18 @@
     <Build Include="StoredProcess\GetOne\SP_GetOne_Countries.sql" />
     <Build Include="StoredProcess\Post\SP_Post_Beer.sql" />
     <Build Include="StoredProcess\Post\SP_Post_Brewery.sql" />
+    <Build Include="Tables\Users.sql" />
+    <Build Include="Tables\Addresses.sql" />
+    <Build Include="Tables\Cities.sql" />
+    <Build Include="StoredProcess\List\SP_List_Rating_Popular.sql" />
+    <Build Include="Tables\BeersRatings.sql" />
+    <Build Include="StoredProcess\List\SP_List_Rating_Newest.sql" />
+    <Build Include="StoredProcess\List\SP_List_Rating.sql" />
+    <Build Include="Tables\LikesBeer.sql" />
+    <Build Include="Tables\LikesRating.sql" />
+    <Build Include="StoredProcess\Post\SP_Post_Like_Rating.sql" />
+    <Build Include="StoredProcess\GetOne\SP_GetOne_Likes_Rating.sql" />
+    <Build Include="StoredProcess\List\SP_List_Moyen_Rating.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />

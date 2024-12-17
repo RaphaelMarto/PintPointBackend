@@ -30,6 +30,9 @@ builder.Services.AddScoped<IBreweriesService, BreweriesService>();
 builder.Services.AddScoped<ICountriesRepo, CountriesRepo>();
 builder.Services.AddScoped<ICountriesService, CountriesService>();
 
+builder.Services.AddScoped<IRatingRepo, RatingRepo>();
+builder.Services.AddScoped<IRatingService, RatingService>();
+
 builder.Services.AddCors(options => options.AddPolicy("localhost",
     o => o.AllowCredentials()
           .WithOrigins("http://localhost:7136", "http://localhost:4200")

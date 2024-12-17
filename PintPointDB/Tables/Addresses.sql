@@ -1,0 +1,12 @@
+﻿CREATE TABLE [dbo].[Addresses]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[IdCity] INT NOT NULL,
+	[Street] VARCHAR(255) NOT NULL,
+	[HouseNumber] VARCHAR(5) NOT NULL,
+	[PostCode] VARCHAR(10) NOT NULL,
+	[CreatedAt] DATETIME2 NOT NULL,
+	[UpdatedAt] DATETIME2 NOT NULL,
+
+	CONSTRAINT [FK_Addresses_Cities] FOREIGN KEY ([IdCity]) REFERENCES [Cities](Id),
+)

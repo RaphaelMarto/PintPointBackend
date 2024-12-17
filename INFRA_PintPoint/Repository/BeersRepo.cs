@@ -30,10 +30,10 @@ namespace INFRA_PintPoint.Service
             }
         }
 
-        public Beers GetOne(int id)
+        public Beers GetOne(int id, int idUser)
         {
             string storedProcedure = "SP_GetOne_Beers";
-            return _connection.QuerySingle<Beers>(storedProcedure, new { Id = id });
+            return _connection.QuerySingle<Beers>(storedProcedure, new { Id = id, IdUser = idUser });
         }
 
         public bool post(Beers beers)

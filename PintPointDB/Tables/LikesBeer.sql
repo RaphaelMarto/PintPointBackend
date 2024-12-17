@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[LikesBeer]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[Liked] BIT NOT NULL,
+	[IdBeer] INT NOT NULL,
+	[IdUser] INT NOT NULL,
+
+	CONSTRAINT [FK_LikesBeer_Beer] FOREIGN KEY ([IdBeer]) REFERENCES [Beers](Id),
+	CONSTRAINT [FK_LikesBeer_User] FOREIGN KEY ([IdUser]) REFERENCES [Users](Id)
+)

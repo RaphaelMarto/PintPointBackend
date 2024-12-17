@@ -39,9 +39,9 @@ namespace CORE_PintPoint.Services
             };
         }
 
-        public BeersWithNames GetOne(int id)
+        public BeersWithNames GetOne(int id, int idUser)
         {
-            BeersWithNames beer = new BeersWithNames(_BeersRepo.GetOne(id));
+            BeersWithNames beer = new BeersWithNames(_BeersRepo.GetOne(id, idUser));
 
             beer.BeerTypeName = _BeerTypeRepo.Get(beer.IdBeerType).Name;
             Breweries breweries = _breweriesRepo.Get(beer.IdBrewery);

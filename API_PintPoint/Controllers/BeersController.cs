@@ -31,9 +31,9 @@ namespace API_PintPoint.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public IActionResult GetOne([FromRoute] int id)
+        public IActionResult GetOne([FromRoute] int id, [FromQuery] int idUser)
         {
-            return Ok(_beersService.GetOne(id).ToCompleteDTO());
+            return Ok(_beersService.GetOne(id, idUser).ToCompleteDTO());
         }
 
         [HttpPost]

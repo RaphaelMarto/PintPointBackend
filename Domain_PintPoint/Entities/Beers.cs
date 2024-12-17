@@ -14,5 +14,6 @@
         public decimal Rating { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+        public int? Rate { get; set; }
     }
 }
