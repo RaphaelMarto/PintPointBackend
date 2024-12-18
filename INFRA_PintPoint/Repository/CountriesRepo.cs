@@ -27,6 +27,12 @@ namespace INFRA_PintPoint.Repository
             return _connection.QuerySingle<Countries>(storedProcedure, new { Id = id });
         }
 
+        public IEnumerable<Cities> GetCities()
+        {
+            string storedProcedure = "SP_List_City";
+            return _connection.Query<Cities>(storedProcedure);
+        }
+
         public async Task<string> GetFlag(string name)
         {
             var httpClient = _httpClientFactory.CreateClient();

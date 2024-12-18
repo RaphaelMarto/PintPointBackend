@@ -63,6 +63,7 @@
     <Folder Include="StoredProcess\List" />
     <Folder Include="StoredProcess\GetOne" />
     <Folder Include="StoredProcess\Post" />
+    <Folder Include="StoredProcess\Auth" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Vue\V_Beers.sql" />
@@ -92,6 +93,13 @@
     <Build Include="StoredProcess\Post\SP_Post_Like_Rating.sql" />
     <Build Include="StoredProcess\GetOne\SP_GetOne_Likes_Rating.sql" />
     <Build Include="StoredProcess\List\SP_List_Moyen_Rating.sql" />
+    <Build Include="StoredProcess\Auth\SP_Register.sql" />
+    <Build Include="StoredProcess\Auth\SP_Sign_In.sql" />
+    <Build Include="StoredProcess\Auth\SP_CheckRefresh.sql" />
+    <Build Include="StoredProcess\Auth\SP_UpdateToken.sql" />
+    <Build Include="StoredProcess\GetOne\SP_GetOne_User.sql" />
+    <Build Include="StoredProcess\Auth\SP_Get_Password.sql" />
+    <Build Include="StoredProcess\List\SP_List_City.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />

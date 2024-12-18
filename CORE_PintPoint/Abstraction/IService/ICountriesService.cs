@@ -4,5 +4,6 @@ namespace CORE_PintPoint.Abstraction.IService
 {
     public interface ICountriesService : IBaseService<Countries>
     {
+        IEnumerable<Cities> GetCities();
     }
 }

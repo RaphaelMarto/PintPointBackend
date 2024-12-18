@@ -1,0 +1,5 @@
+﻿CREATE PROCEDURE [dbo].[SP_List_City]
+AS
+BEGIN
+	SELECT * FROM Cities
+END

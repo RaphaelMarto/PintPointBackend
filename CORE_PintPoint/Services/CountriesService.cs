@@ -17,5 +17,10 @@ namespace CORE_PintPoint.Services
         {
             return _CountriesRepo.Get();
         }
+
+        public IEnumerable<Cities> GetCities()
+        {
+            return _CountriesRepo.GetCities();
+        }
     }
 }

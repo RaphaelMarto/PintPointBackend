@@ -3,6 +3,8 @@ using API_PintPoint.Mapper;
 using CORE_PintPoint.Abstraction.IService;
 using CORE_PintPoint.Entities;
 using Domain_PintPoint.Entities;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API_PintPoint.Controllers

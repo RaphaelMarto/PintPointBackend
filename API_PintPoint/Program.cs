@@ -1,9 +1,14 @@
+using API_PintPoint.Service;
 using CORE_PintPoint.Abstraction.IRepo;
 using CORE_PintPoint.Abstraction.IService;
 using CORE_PintPoint.Services;
 using INFRA_PintPoint.Repository;
 using INFRA_PintPoint.Service;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Data.SqlClient;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +38,39 @@ builder.Services.AddScoped<ICountriesService, CountriesService>();
 builder.Services.AddScoped<IRatingRepo, RatingRepo>();
 builder.Services.AddScoped<IRatingService, RatingService>();
 
+builder.Services.AddScoped<IAuthRepo, AuthRepo>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+
+builder.Services.AddScoped<AuthenticateService>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.SaveToken = true;
+        options.TokenValidationParameters = new TokenValidationParameters()
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["jwt:issuer"],
+            ValidAudience = builder.Configuration.GetSection("jwt").GetValue<string>("audience"),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["jwt:secretKey"])),
+            ClockSkew = TimeSpan.FromSeconds(10)
+        };
+    });
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("admin", policyBuilder =>
+    {
+        policyBuilder
+            .RequireAuthenticatedUser()
+            .RequireAssertion(context => context.User.HasClaim(ClaimTypes.Role, "Admin"))
+            .Build();
+    });
+});
+
 builder.Services.AddCors(options => options.AddPolicy("localhost",
     o => o.AllowCredentials()
           .WithOrigins("http://localhost:7136", "http://localhost:4200")
@@ -52,6 +90,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

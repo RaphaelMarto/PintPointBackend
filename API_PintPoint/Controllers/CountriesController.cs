@@ -1,5 +1,4 @@
-﻿using CORE_PintPoint.Abstraction.IRepo;
-using CORE_PintPoint.Abstraction.IService;
+﻿using CORE_PintPoint.Abstraction.IService;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API_PintPoint.Controllers
@@ -9,18 +8,22 @@ namespace API_PintPoint.Controllers
     public class CountriesController : ControllerBase
     {
         private readonly ICountriesService _countriesService;
-        private readonly ICountriesRepo _countriesRepo;
 
-        public CountriesController(ICountriesService countriesService, ICountriesRepo countriesRepo)
+        public CountriesController(ICountriesService countriesService)
         {
             _countriesService = countriesService;
-            _countriesRepo = countriesRepo;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
             return Ok(_countriesService.GetAll());
+        }
+
+        [HttpGet("Cities")]
+        public IActionResult GetCities()
+        {
+            return Ok(_countriesService.GetCities());
         }
     }
 }
