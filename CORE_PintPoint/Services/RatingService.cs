@@ -12,9 +12,9 @@ namespace CORE_PintPoint.Services
         {
             _RatingRepo = ratingRepo;
         }
-        public OffsetResult<BeersRating> Get(int offset, int limit, string order, string type, int idUser)
+        public OffsetResult<BeersRating> Get(int offset, int limit, string order, string type, int idUser, int idBeer)
         {
-            OffsetResult<BeersRating> RatingOffset = _RatingRepo.Get(offset, limit, order, type, idUser);
+            OffsetResult<BeersRating> RatingOffset = _RatingRepo.Get(offset, limit, order, type, idUser, idBeer);
             RatingOffset.Results = isLiked(RatingOffset.Results);
             return RatingOffset;
         }
@@ -24,16 +24,16 @@ namespace CORE_PintPoint.Services
             return _RatingRepo.GetMoyenRate(idBeer);
         }
 
-        public IEnumerable<BeersRating> GetNewest(int idUser)
+        public IEnumerable<BeersRating> GetNewest(int idUser, int idBeer)
         {
-            IEnumerable<BeersRating> ratings = _RatingRepo.GetNewest(idUser);
+            IEnumerable<BeersRating> ratings = _RatingRepo.GetNewest(idUser, idBeer);
             ratings = isLiked(ratings);
             return ratings;
         }
 
-        public IEnumerable<BeersRating> GetPopular(int idUser)
+        public IEnumerable<BeersRating> GetPopular(int idUser, int idBeer)
         {
-            IEnumerable<BeersRating> ratings = _RatingRepo.GetPopular(idUser);
+            IEnumerable<BeersRating> ratings = _RatingRepo.GetPopular(idUser, idBeer);
             ratings = isLiked(ratings);
             return ratings;
         }

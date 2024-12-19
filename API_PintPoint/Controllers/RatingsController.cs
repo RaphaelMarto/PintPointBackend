@@ -18,7 +18,7 @@ namespace API_PintPoint.Controllers
         }
 
         [HttpGet("Type/{type}")]
-        public IActionResult Get([FromRoute] string type, [FromQuery] int offset = 0, [FromQuery] int limit = 20, [FromQuery] string order = "ASC")
+        public IActionResult Get([FromRoute] string type, [FromQuery] int idBeer, [FromQuery] int offset = 0, [FromQuery] int limit = 20, [FromQuery] string order = "ASC")
         {
             try
             {
@@ -29,7 +29,7 @@ namespace API_PintPoint.Controllers
                     userId = int.Parse(userIdClaim.Value);
                 }
 
-                return Ok(_ratingService.Get(offset, limit, order, type, userId));
+                return Ok(_ratingService.Get(offset, limit, order, type, userId, idBeer));
             }
             catch (Exception ex)
             {
@@ -37,8 +37,8 @@ namespace API_PintPoint.Controllers
             }
         }
 
-        [HttpGet("Newest")]
-        public IActionResult GetNewest()
+        [HttpGet("Newest/{idBeer:int}")]
+        public IActionResult GetNewest(int idBeer)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace API_PintPoint.Controllers
                     userId = int.Parse(userIdClaim.Value);
                 }
 
-                return Ok(_ratingService.GetNewest(userId));
+                return Ok(_ratingService.GetNewest(userId, idBeer));
             }
             catch (Exception ex)
             {
@@ -57,8 +57,8 @@ namespace API_PintPoint.Controllers
             }
         }
 
-        [HttpGet("Popular")]
-        public IActionResult GetPopular()
+        [HttpGet("Popular/{idBeer:int}")]
+        public IActionResult GetPopular(int idBeer)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace API_PintPoint.Controllers
                     userId = int.Parse(userIdClaim.Value);
                 }
 
-                return Ok(_ratingService.GetPopular(userId));
+                return Ok(_ratingService.GetPopular(userId, idBeer));
             }
             catch (Exception ex)
             {

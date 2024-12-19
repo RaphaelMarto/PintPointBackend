@@ -13,10 +13,10 @@ namespace INFRA_PintPoint.Repository
             _connection = connection;
         }
 
-        public OffsetResult<BeersRating> Get(int offset, int limit, string order, string type, int idUser)
+        public OffsetResult<BeersRating> Get(int offset, int limit, string order, string type, int idUser, int idBeer)
         {
             string storedProcedure = "SP_List_Rating";
-            var param = new { Offset = offset, Limit = limit, Order = order, Type = type, IdUser = idUser };
+            var param = new { Offset = offset, Limit = limit, Order = order, Type = type, IdUser = idUser, IdBeer = idBeer };
 
             using (var multi = _connection.QueryMultiple(storedProcedure, param))
             {
@@ -31,16 +31,16 @@ namespace INFRA_PintPoint.Repository
             }
         }
 
-        public IEnumerable<BeersRating> GetNewest(int idUser)
+        public IEnumerable<BeersRating> GetNewest(int idUser, int idBeer)
         {
             string storedProcedure = "SP_List_Rating_Newest";
-            return _connection.Query<BeersRating>(storedProcedure, new { IdUser = idUser });
+            return _connection.Query<BeersRating>(storedProcedure, new { IdUser = idUser, IdBeer = idBeer });
         }
 
-        public IEnumerable<BeersRating> GetPopular(int idUser)
+        public IEnumerable<BeersRating> GetPopular(int idUser, int idBeer)
         {
             string storedProcedure = "SP_List_Rating_Popular";
-            return _connection.Query<BeersRating>(storedProcedure, new { IdUser = idUser });
+            return _connection.Query<BeersRating>(storedProcedure, new { IdUser = idUser, IdBeer = idBeer });
         }
 
         public bool LikeUnlikeRating(bool likeStatus, int idRating, int idUser)

@@ -1,5 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[SP_List_Rating_Newest]
-    @IdUser INT
+    @IdUser INT,
+    @IdBeer INT
 AS
 BEGIN
 	SELECT TOP 3 
@@ -13,6 +14,7 @@ BEGIN
         LikesRating lr ON br.Id = lr.IdRating AND lr.IdUser = @IdUser
     LEFT JOIN 
         Users u ON br.IdUser = u.Id
+    WHERE br.IdBeer = @IdBeer
     ORDER BY 
         br.CreatedAt DESC
 END
