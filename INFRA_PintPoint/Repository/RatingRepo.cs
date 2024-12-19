@@ -2,6 +2,7 @@
 using Dapper;
 using Domain_PintPoint.Entities;
 using Microsoft.Data.SqlClient;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace INFRA_PintPoint.Repository
 {
@@ -54,6 +55,12 @@ namespace INFRA_PintPoint.Repository
         {
             string storedProcedure = "SP_List_Moyen_Rating";
             return _connection.Query<MoyenRate>(storedProcedure, new { IdBeer = idBeer });
+        }
+
+        public bool PostRating(decimal rate, string comment, int idBeer, int idUser)
+        {
+            string storedProcedure = "SP_Post_Rating";
+            return _connection.Execute(storedProcedure, new { Rate = rate, Comment = comment, IdBeer = idBeer, IdUser = idUser }) > 0;
         }
     }
 }

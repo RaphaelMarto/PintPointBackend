@@ -103,5 +103,26 @@ namespace API_PintPoint.Controllers
                 return BadRequest(new { ErrorMessage = ex.Message });
             }
         }
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost("Rate/{idBeer:int}")]
+        public IActionResult PostRating([FromRoute] int idBeer, [FromBody] RatingPost ratingPost)
+        {
+            try
+            {
+                int userId = 0;
+                var userIdClaim = User.FindFirst(ClaimTypes.Sid);
+                if (userIdClaim != null)
+                {
+                    userId = int.Parse(userIdClaim.Value);
+                }
+
+                return Ok(_ratingService.PostRating(ratingPost.rate, ratingPost.comment, idBeer, userId));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { ErrorMessage = ex.Message });
+            }
+        }
     }
 }

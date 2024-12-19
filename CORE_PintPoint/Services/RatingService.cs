@@ -55,5 +55,10 @@ namespace CORE_PintPoint.Services
         {
             return _RatingRepo.LikeUnlikeRating(likeStatus, idRating, idUser);
         }
+
+        public bool PostRating(decimal rate, string comment, int idBeer, int idUser)
+        {
+            return _RatingRepo.PostRating(rate, comment, idBeer, idUser);
+        }
     }
 }

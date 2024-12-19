@@ -10,5 +10,6 @@ namespace CORE_PintPoint.Abstraction.IService
         IEnumerable<BeersRating> isLiked(IEnumerable<BeersRating> ratings);
         bool LikeUnlikeRating(bool likeStatus, int idRating, int idUser);
         IEnumerable<MoyenRate> GetMoyenRate(int idBeer);
+        bool PostRating(decimal rate, string comment, int idBeer, int idUser);
     }
 }
