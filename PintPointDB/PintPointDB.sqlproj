@@ -100,6 +100,7 @@
     <Build Include="StoredProcess\GetOne\SP_GetOne_User.sql" />
     <Build Include="StoredProcess\Auth\SP_Get_Password.sql" />
     <Build Include="StoredProcess\List\SP_List_City.sql" />
+    <Build Include="StoredProcess\Auth\SP_Check_Email_NickName.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />

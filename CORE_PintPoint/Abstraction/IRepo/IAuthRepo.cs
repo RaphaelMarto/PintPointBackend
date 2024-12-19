@@ -10,5 +10,6 @@ namespace CORE_PintPoint.Abstraction.IRepo
         string GetPassword(string email);
         bool UpdateTokenDb(int idUser, string token, string refreshToken);
         bool CheckRefresh(string accessToken,  string refreshToken);
+        EmailNickNameExist CheckUserExists(string nickName, string email);
     }
 }

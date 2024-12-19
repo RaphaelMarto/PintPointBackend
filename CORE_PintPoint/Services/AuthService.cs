@@ -18,6 +18,11 @@ namespace CORE_PintPoint.Services
             return _AuthRepo.CheckRefresh(accessToken, refreshToken);
         }
 
+        public EmailNickNameExist CheckUserExists(string nickName, string email)
+        {
+            return _AuthRepo.CheckUserExists(nickName, email);
+        }
+
         public Users GetOne(int id)
         {
             return _AuthRepo.GetOne(id);

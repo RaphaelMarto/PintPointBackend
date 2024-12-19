@@ -1,6 +1,9 @@
 ﻿using API_PintPoint.DTOs.Ratings;
 using CORE_PintPoint.Abstraction.IService;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace API_PintPoint.Controllers
 {
@@ -15,21 +18,63 @@ namespace API_PintPoint.Controllers
         }
 
         [HttpGet("Type/{type}")]
-        public IActionResult Get([FromRoute] string type, [FromQuery] int idUser, [FromQuery] int offset = 0, [FromQuery] int limit = 20, [FromQuery] string order = "ASC")
+        public IActionResult Get([FromRoute] string type, [FromQuery] int offset = 0, [FromQuery] int limit = 20, [FromQuery] string order = "ASC")
         {
-            return Ok(_ratingService.Get(offset, limit, order, type, idUser));
+            try
+            {
+                int userId = 0;
+                var userIdClaim = User.FindFirst(ClaimTypes.Sid);
+                if (userIdClaim != null)
+                {
+                    userId = int.Parse(userIdClaim.Value);
+                }
+
+                return Ok(_ratingService.Get(offset, limit, order, type, userId));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { ErrorMessage = ex.Message });
+            }
         }
 
         [HttpGet("Newest")]
-        public IActionResult GetNewest([FromQuery] int idUser)
+        public IActionResult GetNewest()
         {
-            return Ok(_ratingService.GetNewest(idUser));
+            try
+            {
+                int userId = 0;
+                var userIdClaim = User.FindFirst(ClaimTypes.Sid);
+                if (userIdClaim != null)
+                {
+                    userId = int.Parse(userIdClaim.Value);
+                }
+
+                return Ok(_ratingService.GetNewest(userId));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { ErrorMessage = ex.Message });
+            }
         }
 
         [HttpGet("Popular")]
-        public IActionResult GetPopular([FromQuery] int idUser)
+        public IActionResult GetPopular()
         {
-            return Ok(_ratingService.GetPopular(idUser));
+            try
+            {
+                int userId = 0;
+                var userIdClaim = User.FindFirst(ClaimTypes.Sid);
+                if (userIdClaim != null)
+                {
+                    userId = int.Parse(userIdClaim.Value);
+                }
+
+                return Ok(_ratingService.GetPopular(userId));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { ErrorMessage = ex.Message });
+            }
         }
 
         [HttpGet("Moyen/{idBeer}")]
@@ -38,10 +83,25 @@ namespace API_PintPoint.Controllers
             return Ok(_ratingService.GetMoyenRate(idBeer));
         }
 
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost]
         public IActionResult Post([FromBody] LikeRatingPost likeRatingPost)
         {
-            return Ok(_ratingService.LikeUnlikeRating(likeRatingPost.likeStatus, likeRatingPost.idRating, likeRatingPost.idUser));
+            try
+            {
+                int userId = 0;
+                var userIdClaim = User.FindFirst(ClaimTypes.Sid);
+                if (userIdClaim != null)
+                {
+                    userId = int.Parse(userIdClaim.Value);
+                }
+
+                return Ok(_ratingService.LikeUnlikeRating(likeRatingPost.likeStatus, likeRatingPost.idRating, userId));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { ErrorMessage = ex.Message });
+            }
         }
     }
 }

@@ -21,12 +21,6 @@ namespace API_PintPoint.Controllers
             _AuthenticateService = authenticateService;
         }
 
-        [HttpGet("{id:int}")]
-        public IActionResult Get(int id)
-        {
-            return Ok(_AuthService.GetOne(id));
-        }
-
         [HttpPost("Login")]
         public IActionResult Login(Login login)
         {
@@ -116,6 +110,12 @@ namespace API_PintPoint.Controllers
             {
                 return BadRequest(new { Errors = ex.Message });
             }
+        }
+
+        [HttpGet("CheckExist")]
+        public IActionResult CheckExist(string nickName, string email)
+        {
+            return Ok(_AuthService.CheckUserExists(nickName, email));
         }
     }
 }

@@ -6,6 +6,7 @@ using Domain_PintPoint.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace API_PintPoint.Controllers
 {
@@ -33,9 +34,23 @@ namespace API_PintPoint.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public IActionResult GetOne([FromRoute] int id, [FromQuery] int idUser)
+        public IActionResult GetOne([FromRoute] int id)
         {
-            return Ok(_beersService.GetOne(id, idUser).ToCompleteDTO());
+            try
+            {
+                int userId = 0;
+                var userIdClaim = User.FindFirst(ClaimTypes.Sid);
+                if (userIdClaim != null)
+                {
+                    userId = int.Parse(userIdClaim.Value);
+                }
+
+                return Ok(_beersService.GetOne(id, userId).ToCompleteDTO());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { ErrorMessage = ex.Message });
+            }
         }
 
         [HttpPost]

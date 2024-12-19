@@ -2,6 +2,7 @@
 using Dapper;
 using Domain_PintPoint.Entities;
 using Microsoft.Data.SqlClient;
+using System.Data;
 
 namespace INFRA_PintPoint.Repository
 {
@@ -18,6 +19,24 @@ namespace INFRA_PintPoint.Repository
             string storedProcedure = "SP_CheckRefresh";
             int? UserId = _connection.QuerySingleOrDefault<int?>(storedProcedure, new { AccessToken = accessToken, RefreshToken = refreshToken });
             return UserId.HasValue;
+        }
+
+        public EmailNickNameExist CheckUserExists(string nickName, string email)
+        {
+            var parameters = new
+            {
+                NickName = nickName,
+                Email = email
+            };
+
+            string storedProcedure = "SP_Check_Email_NickName";
+            var result = _connection.QuerySingleOrDefault(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
+
+            return new EmailNickNameExist()
+            {
+                NickNameExists = result?.UserNameExists == 1,
+                EmailExists = result?.EmailExists == 1
+            };
         }
 
         public Users GetOne(int id)

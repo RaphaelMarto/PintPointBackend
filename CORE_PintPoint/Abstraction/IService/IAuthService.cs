@@ -14,5 +14,6 @@ namespace CORE_PintPoint.Abstraction.IService
         Users GetOne(int id);
         bool UpdateTokenDb(int idUser, string token, string refreshToken);
         bool CheckRefresh(string accessToken, string refreshToken);
+        EmailNickNameExist CheckUserExists(string nickName, string email);
     }
 }
