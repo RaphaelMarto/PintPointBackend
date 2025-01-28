@@ -1,6 +1,4 @@
 ﻿using Domain_PintPoint.Entities;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Xml.Linq;
 
 namespace CORE_PintPoint.Abstraction.IRepo
 {
@@ -12,5 +10,7 @@ namespace CORE_PintPoint.Abstraction.IRepo
         bool LikeUnlikeRating(bool likeStatus, int idRating, int idUser);
         IEnumerable<MoyenRate> GetMoyenRate(int idBeer);
         bool PostRating(decimal rate, string comment, int idBeer, int idUser);
+        MyRating? GetOneRating(int idBeer, int idUser);
+        bool PutRating(decimal rate, string comment, int idBeer, int idUser);
     }
 }

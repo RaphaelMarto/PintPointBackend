@@ -11,5 +11,7 @@ namespace CORE_PintPoint.Abstraction.IService
         bool LikeUnlikeRating(bool likeStatus, int idRating, int idUser);
         IEnumerable<MoyenRate> GetMoyenRate(int idBeer);
         bool PostRating(decimal rate, string comment, int idBeer, int idUser);
+        MyRating? GetOneRating(int idBeer, int idUser);
+        bool PutRating(decimal rate, string comment, int idBeer, int idUser);
     }
 }

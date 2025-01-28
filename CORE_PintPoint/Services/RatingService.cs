@@ -31,6 +31,11 @@ namespace CORE_PintPoint.Services
             return ratings;
         }
 
+        public MyRating? GetOneRating(int idBeer, int idUser)
+        {
+            return _RatingRepo.GetOneRating(idBeer, idUser);
+        }
+
         public IEnumerable<BeersRating> GetPopular(int idUser, int idBeer)
         {
             IEnumerable<BeersRating> ratings = _RatingRepo.GetPopular(idUser, idBeer);
@@ -59,6 +64,11 @@ namespace CORE_PintPoint.Services
         public bool PostRating(decimal rate, string comment, int idBeer, int idUser)
         {
             return _RatingRepo.PostRating(rate, comment, idBeer, idUser);
+        }
+
+        public bool PutRating(decimal rate, string comment, int idBeer, int idUser)
+        {
+            return _RatingRepo.PutRating(rate, comment, idBeer, idUser);
         }
     }
 }
