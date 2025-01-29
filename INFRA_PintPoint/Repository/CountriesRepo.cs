@@ -33,25 +33,25 @@ namespace INFRA_PintPoint.Repository
             return _connection.Query<Cities>(storedProcedure);
         }
 
-        public async Task<string> GetFlag(string name)
-        {
-            var httpClient = _httpClientFactory.CreateClient();
-            httpClient.BaseAddress = new Uri("https://restcountries.com/v3.1/");
+        //public async Task<string> GetFlag(string name)
+        //{
+        //    var httpClient = _httpClientFactory.CreateClient();
+        //    httpClient.BaseAddress = new Uri("https://restcountries.com/v3.1/");
 
-            string url = $"name/{name}";
+        //    string url = $"name/{name}";
 
-            HttpResponseMessage httpResponse = await httpClient.GetAsync(url);
+        //    HttpResponseMessage httpResponse = await httpClient.GetAsync(url);
 
-            if (httpResponse.IsSuccessStatusCode)
-            {
-                string responseContent = await httpResponse.Content.ReadAsStringAsync();
+        //    if (httpResponse.IsSuccessStatusCode)
+        //    {
+        //        string responseContent = await httpResponse.Content.ReadAsStringAsync();
 
-                List<CountryFlag>? countries = JsonSerializer.Deserialize<List<CountryFlag>>(responseContent);
+        //        List<CountryFlag>? countries = JsonSerializer.Deserialize<List<CountryFlag>>(responseContent);
 
 
-                return countries[0].flags.svg;
-            }
-            throw new Exception();
-        }
+        //        return countries[0].flags.svg;
+        //    }
+        //    throw new Exception();
+        //}
     }
 }

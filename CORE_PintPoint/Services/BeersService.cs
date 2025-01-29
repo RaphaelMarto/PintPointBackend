@@ -28,8 +28,10 @@ namespace CORE_PintPoint.Services
                 beersWithNames[i].BeerTypeName = _BeerTypeRepo.Get(beersWithNames[i].IdBeerType).Name;
                 Breweries breweries = _breweriesRepo.Get(beersWithNames[i].IdBrewery);
                 beersWithNames[i].BreweryName = breweries.Name;
-                beersWithNames[i].CountryName = _countriesRepo.Get(breweries.IdCountry).Name;
-                beersWithNames[i].FlagUrl = _countriesRepo.GetFlag(beersWithNames[i].CountryName).Result;
+
+                Countries country = _countriesRepo.Get(breweries.IdCountry);
+                beersWithNames[i].CountryName = country.Name;
+                beersWithNames[i].FlagUrl = country.CountryFlagUrl; // _countriesRepo.GetFlag(beersWithNames[i].CountryName).Result;
             }
 
             return new OffsetResult<BeersWithNames>()
@@ -46,8 +48,10 @@ namespace CORE_PintPoint.Services
             beer.BeerTypeName = _BeerTypeRepo.Get(beer.IdBeerType).Name;
             Breweries breweries = _breweriesRepo.Get(beer.IdBrewery);
             beer.BreweryName = breweries.Name;
-            beer.CountryName = _countriesRepo.Get(breweries.IdCountry).Name;
-            beer.FlagUrl = _countriesRepo.GetFlag(beer.CountryName).Result;
+
+            Countries country = _countriesRepo.Get(breweries.IdCountry);
+            beer.CountryName = country.Name;
+            beer.FlagUrl = country.CountryFlagUrl;
 
             return beer;
         }
