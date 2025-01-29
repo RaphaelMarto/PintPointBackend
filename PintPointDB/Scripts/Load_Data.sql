@@ -270,11 +270,11 @@ INSERT INTO Countries ([Id], [Name]) VALUES
 
 INSERT INTO Breweries([Name], [CompleteADdress], [City], [IdCountry]) VALUES ('Test', 'Test', 'TEst', 1);
 
-INSERT INTO Beers ([Name], [Description], [Price], [PictureUrl] , [Capacity], [AlcoholPercent], [IdBeerType], [IdBrewery], [Rating], [LikesTotal], [CreatedAt], [UpdatedAt]) 
-VALUES ('Jup','',1.2, 'https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg', 25, 5.2, 1, 1, 4, 0, GETDATE(),GETDATE()),
-('Aa','',1.2, 'https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg' , 25, 5.2, 2, 1, 4.5, 0, GETDATE(),GETDATE()),
-('Jup3','',1.2, 'https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg' , 25, 5.2, 3, 1, 3, 0, GETDATE(),GETDATE()),
-('Cc','',1.2, 'https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg' , 25, 5.2, 4, 1, 2, 0, GETDATE(),GETDATE());
+INSERT INTO Beers ([Name], [Description], [Price], [PictureUrl] , [Capacity], [AlcoholPercent], [IdBeerType], [IdBrewery], [Rating], [LikesTotal], [CreatedAt], [UpdatedAt], [BirthYear]) 
+VALUES ('Jup','',1.2, 'https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg', 25, 5.2, 1, 1, 4, 0, GETDATE(),GETDATE(), 1964),
+('Aa','',1.2, 'https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg' , 25, 5.2, 2, 1, 4.5, 0, GETDATE(),GETDATE(), 1988),
+('Jup3','',1.2, 'https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg' , 25, 5.2, 3, 1, 3, 0, GETDATE(),GETDATE(), 1357),
+('Cc','',1.2, 'https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg' , 25, 5.2, 4, 1, 2, 0, GETDATE(),GETDATE(), 1753);
 
 INSERT INTO Cities ([Name], [CountryId]) VALUES ('Aalst', 17),
  ('Aarschot', 17),

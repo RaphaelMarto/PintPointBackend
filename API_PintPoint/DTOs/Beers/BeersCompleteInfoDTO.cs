@@ -17,5 +17,6 @@
         public string? FlagUrl { get; set; }
         public decimal Rating { get; set; }
         public int? Rate { get; set; }
+        public int BirthYear { get; set; }
     }
 }

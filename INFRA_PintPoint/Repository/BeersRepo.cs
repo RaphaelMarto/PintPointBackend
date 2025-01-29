@@ -52,6 +52,7 @@ namespace INFRA_PintPoint.Service
                 Rating = beers.Rating,
                 CreatedAt = beers.CreatedAt,
                 UpdatedAt = beers.UpdatedAt,
+                BirthYear = beers.BirthYear
             }) > 0;
         }
     }

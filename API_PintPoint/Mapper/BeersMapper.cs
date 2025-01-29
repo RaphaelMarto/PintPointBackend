@@ -1,6 +1,7 @@
 ﻿using API_PintPoint.DTOs.Beers;
 using CORE_PintPoint.Entities;
 using Domain_PintPoint.Entities;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace API_PintPoint.Mapper
 {
@@ -19,6 +20,7 @@ namespace API_PintPoint.Mapper
                 PictureUrl = dto.PictureUrl,
                 FlagUrl = dto.FlagUrl,
                 Rating = dto.Rating,
+                BirthYear = dto.BirthYear,
             };
         }
 
@@ -41,6 +43,7 @@ namespace API_PintPoint.Mapper
                 FlagUrl = dto.FlagUrl,
                 Rating = dto.Rating,
                 Rate = dto.Rate,
+                BirthYear = dto.BirthYear
             };
         }
 
@@ -59,6 +62,7 @@ namespace API_PintPoint.Mapper
                 Rating = dto.Rating,
                 CreatedAt = dto.CreatedAt,
                 UpdatedAt = dto.UpdatedAt,
+                BirthYear = dto.BirthYear,
             };
         }
     }

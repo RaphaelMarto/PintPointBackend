@@ -11,6 +11,7 @@
 	[LikesTotal] INT NOT NULL,
 	[IdBeerType] INT NOT NULL,
 	[IdBrewery] INT NOT NULL,
+	[BirthYear] INT NOT NULL,
 	[CreatedAt] DATETIME2 NOT NULL,
 	[UpdatedAt] DATETIME2 NOT NULL,
 

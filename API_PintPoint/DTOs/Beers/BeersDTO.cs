@@ -11,5 +11,6 @@
         public string PictureUrl { get; set; }
         public string? FlagUrl { get; set; }
         public decimal Rating { get; set; }
+        public int BirthYear { get; set; }
     }
 }
