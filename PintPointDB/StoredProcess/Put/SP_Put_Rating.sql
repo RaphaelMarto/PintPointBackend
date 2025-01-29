@@ -8,4 +8,12 @@ BEGIN
 	UPDATE BeersRatings
 	SET Rate = @Rate, Comment = @Comment, UpdatedAt = GETDATE()
 	WHERE IdBeer = @IdBeer AND IdUser = @IdUser
+
+	DECLARE @AvgRating DECIMAL(4,2);
+
+	SELECT @AvgRating = AVG(Rate) FROM BeersRatings 
+	WHERE IdBeer = @IdBeer;
+
+	UPDATE Beers SET Rating = @AvgRating
+	WHERE Id = @IdBeer;
 END
