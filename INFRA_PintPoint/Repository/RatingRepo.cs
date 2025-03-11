@@ -73,5 +73,11 @@ namespace INFRA_PintPoint.Repository
             string storedProcedure = "SP_Put_Rating";
             return _connection.Execute(storedProcedure, new { Rate = rate, Comment = comment, IdBeer = idBeer, IdUser = idUser }) > 0;
         }
+
+        public IEnumerable<Top3Rate> GetTop3Rate()
+        {
+            string storedProcedure = "SP_List_Top3";
+            return _connection.Query<Top3Rate>(storedProcedure);
+        }
     }
 }

@@ -165,5 +165,18 @@ namespace API_PintPoint.Controllers
                 return BadRequest(new { ErrorMessage = ex.Message });
             }
         }
+
+        [HttpGet("Rate/Top3")]
+        public IActionResult GetTop3()
+        {
+            try
+            {
+                return Ok(_ratingService.GetTop3Rate());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { ErrorMessage = ex.Message});
+            }
+        }
     }
 }

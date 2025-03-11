@@ -41,6 +41,9 @@ builder.Services.AddScoped<IRatingService, RatingService>();
 builder.Services.AddScoped<IAuthRepo, AuthRepo>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
+builder.Services.AddScoped<IUserRepo, UserRepo>();
+builder.Services.AddScoped<IUserService, UserService>();
+
 builder.Services.AddScoped<AuthenticateService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

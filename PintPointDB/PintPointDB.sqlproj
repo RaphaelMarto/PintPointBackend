@@ -105,6 +105,12 @@
     <Build Include="StoredProcess\Post\SP_Post_Rating.sql" />
     <Build Include="StoredProcess\GetOne\SP_GetOne_Rate.sql" />
     <Build Include="StoredProcess\Put\SP_Put_Rating.sql" />
+    <Build Include="StoredProcess\List\SP_List_Top3.sql" />
+    <Build Include="StoredProcess\List\SP_List_Top3_User.sql" />
+    <Build Include="StoredProcess\List\SP_List_Rating_User_Recent.sql" />
+    <Build Include="StoredProcess\List\SP_List_Rating_User.sql" />
+    <Build Include="StoredProcess\GetOne\SP_GetOne_User_Profil.sql" />
+    <Build Include="StoredProcess\GetOne\SP_GetOne_Id_By_NickName.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />

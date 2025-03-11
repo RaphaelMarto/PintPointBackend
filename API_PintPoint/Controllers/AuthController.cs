@@ -33,7 +33,7 @@ namespace API_PintPoint.Controllers
                 string token = _AuthenticateService.CreateToken(user);
                 _AuthService.UpdateTokenDb(user.Id, token, user.RefreshToken);
 
-                return Ok(new SuccessConnexion() { AccessToken = token, RefreshToken = user.RefreshToken });
+                return Ok(new SuccessConnexion() { AccessToken = token, RefreshToken = user.RefreshToken, Nickname = user.NickName });
             }
             catch (Exception ex)
             {
@@ -50,7 +50,7 @@ namespace API_PintPoint.Controllers
                 string token = _AuthenticateService.CreateToken(user);
                 _AuthService.UpdateTokenDb(user.Id, token, user.RefreshToken);
 
-                return Ok(new SuccessConnexion() { AccessToken = token, RefreshToken = user.RefreshToken });
+                return Ok(new SuccessConnexion() { AccessToken = token, RefreshToken = user.RefreshToken, Nickname = user.NickName });
             }
             catch (Exception ex)
             {

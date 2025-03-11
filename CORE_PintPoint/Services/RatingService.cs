@@ -43,6 +43,11 @@ namespace CORE_PintPoint.Services
             return ratings;
         }
 
+        public IEnumerable<Top3Rate> GetTop3Rate()
+        {
+            return _RatingRepo.GetTop3Rate();
+        }
+
         public IEnumerable<BeersRating> isLiked(IEnumerable<BeersRating> ratings)
         {
             foreach (BeersRating rating in ratings)
