@@ -10,8 +10,11 @@ namespace CORE_PintPoint.Abstraction.IService
     public interface IUserService
     {
         IEnumerable<Top3Rate> getTop3(string nickName);
-        UserProfile? GetUserProfile(string nickName);
+        UserPP? GetUserPP(string nickName);
         OffsetResult<BeersRating> RatingBeerUser(int offset, int limit, string order, string type, string nickName);
         IEnumerable<BeersRating> GetRecentRating(string nickName);
+        UserWithAddress? GetUserProfile(string nickName);
+        bool UpdateUserProfile(UserUpdate userUpdate, string nickName);
+        bool UpdateUserAddress(UserAddress userAddress);
     }
 }

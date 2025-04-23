@@ -111,6 +111,9 @@
     <Build Include="StoredProcess\List\SP_List_Rating_User.sql" />
     <Build Include="StoredProcess\GetOne\SP_GetOne_User_Profil.sql" />
     <Build Include="StoredProcess\GetOne\SP_GetOne_Id_By_NickName.sql" />
+    <Build Include="StoredProcess\GetOne\SP_GetOne_UserUpdate.sql" />
+    <Build Include="StoredProcess\Put\SP_Put_UserUpdate.sql" />
+    <Build Include="StoredProcess\Put\SP_Put_UserAddress.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain_PintPoint.Entities
 {
-    public class UserProfile
+    public class UserPP
     {
         public string PictureUrl { get; set; }
     }

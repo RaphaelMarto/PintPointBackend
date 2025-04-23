@@ -5,6 +5,7 @@ using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,10 +37,16 @@ namespace INFRA_PintPoint.Repository
             return _connection.QuerySingleOrDefault<int>(storedProcedure, new { NickName = nickName });
         }
 
-        public UserProfile? GetUserProfile(string nickName)
+        public UserPP? GetUserPP(string nickName)
         {
             string storedProcedure = "SP_GetOne_User_Profil";
-            return _connection.QuerySingleOrDefault<UserProfile>(storedProcedure, new { NickName = nickName });
+            return _connection.QuerySingleOrDefault<UserPP>(storedProcedure, new { NickName = nickName });
+        }
+
+        public UserWithAddress? GetUserProfile(int idUser)
+        {
+            string storedProcedure = "SP_GetOne_UserUpdate";
+            return _connection.QuerySingleOrDefault<UserWithAddress>(storedProcedure, new { id = idUser });
         }
 
         public OffsetResult<BeersRating> RatingBeerUser(int offset, int limit, string order, string type, int idUser)
@@ -58,6 +65,32 @@ namespace INFRA_PintPoint.Repository
                     Total = total,
                 };
             }
+        }
+
+        public bool UpdateUserAddress(UserAddress userAddress)
+        {
+            string storedProcedure = "SP_Put_UserAddress";
+            return _connection.Execute(storedProcedure, new { 
+                Id = userAddress.AddressId, 
+                IdCity = userAddress.IdCity, 
+                HouseNumber = userAddress.HouseNumber, 
+                PostCode = userAddress.PostCode, 
+                Street = userAddress.Street }) > 0;
+        }
+
+        public bool UpdateUserProfile(UserUpdate userUpdate, int idUser)
+        {
+            string storedProcedure = "SP_Put_UserUpdate";
+            return (_connection.Execute(storedProcedure, new
+            {
+                Id = idUser,
+                FirstName = userUpdate.FirstName,
+                LastName = userUpdate.LastName,
+                NickName = userUpdate.NickName,
+                DateOfBirth = userUpdate.DateOfBirth,
+                Email = userUpdate.Email,
+                Phone = userUpdate.Phone
+            }) > 0);
         }
     }
 }

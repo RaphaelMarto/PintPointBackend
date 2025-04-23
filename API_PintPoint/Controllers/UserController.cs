@@ -1,4 +1,5 @@
-﻿using CORE_PintPoint.Abstraction.IService;
+﻿using API_PintPoint.Mapper;
+using CORE_PintPoint.Abstraction.IService;
 using Domain_PintPoint.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -28,14 +29,14 @@ namespace API_PintPoint.Controllers
             }
         }
 
-        [HttpGet("Profil-Info/{NickName}")]
-        [ProducesResponseType<UserProfile>(200)]
+        [HttpGet("Profil-Picture/{NickName}")]
+        [ProducesResponseType<UserPP>(200)]
         [ProducesResponseType(400)]
-        public IActionResult GetProfileInfo([FromRoute] string NickName)
+        public IActionResult GetUserPP([FromRoute] string NickName)
         {
             try
             {
-                return Ok(_userService.GetUserProfile(NickName));
+                return Ok(_userService.GetUserPP(NickName));
             }
             catch (Exception ex)
             {
@@ -62,6 +63,51 @@ namespace API_PintPoint.Controllers
             try
             {
                 return Ok(_userService.RatingBeerUser(offset, limit, order, type, NickName));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { ErrorMessage = ex.Message });
+            }
+        }
+
+        [HttpGet("Profile/{NickName}")]
+        public IActionResult GetUserProfile([FromRoute] string NickName)
+        {
+            try
+            {
+                return Ok(_userService.GetUserProfile(NickName)?.ToUserProfile());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { ErrorMessage = ex.Message });
+            }
+        }
+
+        [HttpPut("Profile/{NickName}")]
+        public IActionResult UpdateUserProfile([FromRoute] string NickName, [FromBody] UserUpdate userUpdate)
+        {
+            try
+            {
+                if (_userService.UpdateUserProfile(userUpdate, NickName))
+                    return Ok(true);
+                else
+                    return BadRequest(new { ErrorMessage = "Error while updating the profile" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { ErrorMessage = ex.Message });
+            }
+        }
+
+        [HttpPut("Address")]
+        public IActionResult UpdateUserAddress([FromBody] UserAddress userAddress)
+        {
+            try
+            {
+                if (_userService.UpdateUserAddress(userAddress))
+                    return Ok(true);
+                else
+                    return BadRequest(new { ErrorMessage = "Error while updating the address" });
             }
             catch (Exception ex)
             {
