@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[SP_GetOne_Id_By_NickName]
-	@NickName VARCHAR(25)
+	@NickName NVARCHAR(50)
 AS
 BEGIN
 	SELECT Id FROM Users

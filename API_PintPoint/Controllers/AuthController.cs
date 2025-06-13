@@ -1,11 +1,13 @@
-﻿using API_PintPoint.DTOs.Auth;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using API_PintPoint.DTOs.Auth;
 using API_PintPoint.Mapper;
 using API_PintPoint.Service;
 using CORE_PintPoint.Abstraction.IService;
 using Domain_PintPoint.Entities;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 
 namespace API_PintPoint.Controllers
 {
@@ -54,7 +56,7 @@ namespace API_PintPoint.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new { Errors = ex.Message });
+                return BadRequest(new { ErrorMessage = ex.Message });
             }
         }
 
@@ -103,19 +105,80 @@ namespace API_PintPoint.Controllers
                 }
                 else
                 {
-                    return BadRequest("Token invalid");
+                    return BadRequest(new { ErrorMessage = "Token invalid" });
                 }
             }
             catch (Exception ex)
             {
-                return BadRequest(new { Errors = ex.Message });
+                return BadRequest(new { ErrorMessage = ex.Message });
             }
         }
 
         [HttpGet("CheckExist")]
-        public IActionResult CheckExist(string nickName, string email)
+        public IActionResult CheckExist(string nickName = "", string email = "")
         {
             return Ok(_AuthService.CheckUserExists(nickName, email));
+        }
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPut("UpdatePassword")]
+        public IActionResult UpdatePassword(UpdatePassword updatePassword)
+        {
+            try
+            {
+                int userId = 0;
+                string email = string.Empty;
+                var userIdClaim = User.FindFirst(ClaimTypes.Sid);
+                var emailClaim = User.FindFirst(ClaimTypes.Email);
+                if (userIdClaim != null && emailClaim != null)
+                {
+                    userId = int.Parse(userIdClaim.Value);
+                    email = emailClaim.Value;
+                }
+
+                if (_AuthService.UpdatePassword(userId, updatePassword.Password, updatePassword.OldPassword, email))
+                {
+                    return Ok(new { message = "Password updated" });
+                }
+                else
+                {
+                    return BadRequest(new { ErrorMessage = "Error updating password" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { ErrorMessage = ex.Message });
+            }
+        }
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpDelete("DeleteUser")]
+        public IActionResult Delete()
+        {
+            try
+            {
+                int userId = 0;
+                string email = string.Empty;
+                var userIdClaim = User.FindFirst(ClaimTypes.Sid);
+                var emailClaim = User.FindFirst(ClaimTypes.Email);
+                if (userIdClaim != null && emailClaim != null)
+                {
+                    userId = int.Parse(userIdClaim.Value);
+                    email = emailClaim.Value;
+                }
+                if (_AuthService.DeleteUser(userId, email))
+                {
+                    return Ok(new { message = "User deleted" });
+                }
+                else
+                {
+                    return BadRequest(new { ErrorMessage = "Error deleting user" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { ErrorMessage = ex.Message });
+            }
         }
     }
 }

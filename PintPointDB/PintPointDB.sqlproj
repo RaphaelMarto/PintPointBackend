@@ -65,6 +65,7 @@
     <Folder Include="StoredProcess\Post" />
     <Folder Include="StoredProcess\Auth" />
     <Folder Include="StoredProcess\Put" />
+    <Folder Include="StoredProcess\Delete" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Vue\V_Beers.sql" />
@@ -114,6 +115,8 @@
     <Build Include="StoredProcess\GetOne\SP_GetOne_UserUpdate.sql" />
     <Build Include="StoredProcess\Put\SP_Put_UserUpdate.sql" />
     <Build Include="StoredProcess\Put\SP_Put_UserAddress.sql" />
+    <Build Include="StoredProcess\Delete\SP_Account_Del.sql" />
+    <Build Include="StoredProcess\Put\SP_Put_Pwd.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />

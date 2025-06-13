@@ -1,5 +1,4 @@
 ﻿using CORE_PintPoint.Abstraction.IService;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API_PintPoint.Controllers
@@ -15,7 +14,7 @@ namespace API_PintPoint.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get() 
+        public IActionResult Get()
         {
             return Ok(_beerTypeService.GetAll());
         }

@@ -2,7 +2,7 @@
 	@Id INT, 
     @FirstName VARCHAR(60), 
     @LastName VARCHAR(60), 
-    @NickName VARCHAR(25), 
+    @NickName NVARCHAR(50), 
     @Email VARCHAR(320), 
     @Phone VARCHAR(10), 
     @DateOfBirth datetime2(7)
@@ -14,6 +14,7 @@ BEGIN
 		NickName = @NickName, 
 		Email = @Email, 
 		Phone = @Phone, 
-		DateOfBirth = @DateOfBirth
+		DateOfBirth = @DateOfBirth,
+		UpdatedAt = GETDATE()
 	WHERE Id = @Id;
 END

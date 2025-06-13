@@ -23,6 +23,11 @@ namespace CORE_PintPoint.Services
             return _AuthRepo.CheckUserExists(nickName, email);
         }
 
+        public bool DeleteUser(int idUser, string email)
+        {
+            return _AuthRepo.DeleteUser(idUser, email);
+        }
+
         public Users GetOne(int id)
         {
             return _AuthRepo.GetOne(id);
@@ -44,6 +49,17 @@ namespace CORE_PintPoint.Services
             string hashedPassword = BC.BCrypt.HashPassword(userWithAddress.Password, salt);
             userWithAddress.Password = hashedPassword;
             return _AuthRepo.Register(userWithAddress);
+        }
+
+        public bool UpdatePassword(int idUser, string password, string oldPassword, string email)
+        {
+            string dbPwd = _AuthRepo.GetPassword(email);
+            if (BC.BCrypt.Verify(oldPassword, dbPwd))
+            {
+                string salt = BC.BCrypt.GenerateSalt();
+                return _AuthRepo.UpdatePassword(idUser, BC.BCrypt.HashPassword(password, salt));
+            }
+            throw new Exception("Password inccorect");
         }
 
         public bool UpdateTokenDb(int idUser, string token, string refreshToken)

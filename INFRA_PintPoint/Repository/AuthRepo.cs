@@ -1,8 +1,8 @@
-﻿using CORE_PintPoint.Abstraction.IRepo;
+﻿using System.Data;
+using CORE_PintPoint.Abstraction.IRepo;
 using Dapper;
 using Domain_PintPoint.Entities;
 using Microsoft.Data.SqlClient;
-using System.Data;
 
 namespace INFRA_PintPoint.Repository
 {
@@ -37,6 +37,12 @@ namespace INFRA_PintPoint.Repository
                 NickNameExists = result?.UserNameExists == 1,
                 EmailExists = result?.EmailExists == 1
             };
+        }
+
+        public bool DeleteUser(int idUser, string email)
+        {
+            string storedProcedure = "SP_Account_Del";
+            return _connection.Execute(storedProcedure, new { Id = idUser, Email = email }) > 0;
         }
 
         public Users GetOne(int id)
@@ -81,6 +87,12 @@ namespace INFRA_PintPoint.Repository
                 PostCode = userWithAddress.PostCode
             };
             return _connection.QuerySingle<Users>(storedProcedure, param);
+        }
+
+        public bool UpdatePassword(int idUser, string password)
+        {
+            string storedProcedure = "SP_Put_Pwd";
+            return _connection.Execute(storedProcedure, new { Id = idUser, Pwd = password }) > 0;
         }
 
         public bool UpdateTokenDb(int idUser, string token, string refreshToken)

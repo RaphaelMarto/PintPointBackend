@@ -1,9 +1,4 @@
 ﻿using Domain_PintPoint.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CORE_PintPoint.Abstraction.IService
 {
@@ -15,5 +10,7 @@ namespace CORE_PintPoint.Abstraction.IService
         bool UpdateTokenDb(int idUser, string token, string refreshToken);
         bool CheckRefresh(string accessToken, string refreshToken);
         EmailNickNameExist CheckUserExists(string nickName, string email);
+        bool UpdatePassword(int idUser, string password, string oldPassword, string email);
+        bool DeleteUser(int idUser, string email);
     }
 }

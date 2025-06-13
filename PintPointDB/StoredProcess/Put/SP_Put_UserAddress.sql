@@ -10,6 +10,7 @@ BEGIN
     SET Street = @Street, 
 		IdCity = @IdCity, 
 		HouseNumber = @HouseNumber, 
-		PostCode = @PostCode
+		PostCode = @PostCode,
+		UpdatedAt = GETDATE()
 	WHERE Id = @Id;
 END

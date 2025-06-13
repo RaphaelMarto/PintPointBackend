@@ -2,7 +2,7 @@
     -- User parameters
     @FirstName VARCHAR(60),
     @LastName VARCHAR(60),
-    @NickName VARCHAR(25),
+    @NickName NVARCHAR(50),
     @DateOfBirth DATETIME2,
     @Email VARCHAR(320),
     @Password VARCHAR(255),
