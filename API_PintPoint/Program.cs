@@ -1,6 +1,7 @@
 using API_PintPoint.Service;
 using CORE_PintPoint.Abstraction.IRepo;
 using CORE_PintPoint.Abstraction.IService;
+using CORE_PintPoint.Entities;
 using CORE_PintPoint.Services;
 using INFRA_PintPoint.Repository;
 using INFRA_PintPoint.Service;
@@ -22,6 +23,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<SqlConnection>(sp =>
     new SqlConnection(builder.Configuration.GetConnectionString("default")));
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
 
 builder.Services.AddScoped<IBeersRepo, BeersRepo>();
 builder.Services.AddScoped<IBeersService, BeersService>();
@@ -43,6 +45,8 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddScoped<IUserRepo, UserRepo>();
 builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.AddScoped<IMailService, MailService>();
 
 builder.Services.AddScoped<AuthenticateService>();
 

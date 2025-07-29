@@ -12,5 +12,9 @@ namespace CORE_PintPoint.Abstraction.IService
         EmailNickNameExist CheckUserExists(string nickName, string email);
         bool UpdatePassword(int idUser, string password, string oldPassword, string email);
         bool DeleteUser(int idUser, string email);
+        bool VerifyOne(string code, int id);
+        bool updatePasswordBycode(string code, int id, string newPassword);
+        bool GeneratePwdCode(int id);
+        int GetIdByMail(string mail);
     }
 }

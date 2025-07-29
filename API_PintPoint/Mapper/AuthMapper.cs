@@ -9,7 +9,6 @@ namespace API_PintPoint.Mapper
         {
             return new UserWithAddress()
             {
-                AddressId = register.AddressId,
                 DateOfBirth = register.DateOfBirth,
                 Email = register.Email,
                 FirstName = register.FirstName,

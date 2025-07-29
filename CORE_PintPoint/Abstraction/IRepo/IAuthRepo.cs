@@ -13,5 +13,9 @@ namespace CORE_PintPoint.Abstraction.IRepo
         EmailNickNameExist CheckUserExists(string nickName, string email);
         bool UpdatePassword(int idUser, string password);
         bool DeleteUser(int idUser, string email);
+        bool VerifyOne(string code, int id);
+        bool UpdatePasswordByCode(string code, int id, string newPassword);
+        bool GeneratePwdCode(int id, string code);
+        int GetIdByMail(string mail);
     }
 }

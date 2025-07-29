@@ -517,3 +517,7 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+
+# data storage
+appsettings.json

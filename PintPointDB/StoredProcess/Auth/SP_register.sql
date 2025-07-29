@@ -16,7 +16,9 @@
     @IdCity INT,
     @Street VARCHAR(255),
     @HouseNumber VARCHAR(5),
-    @PostCode VARCHAR(10)
+    @PostCode VARCHAR(10),
+    -- Auth param
+    @VerificationCode NVARCHAR(50)
 AS
 BEGIN
     BEGIN TRANSACTION;
@@ -29,8 +31,8 @@ BEGIN
         DECLARE @AddressId INT = SCOPE_IDENTITY();
 
         -- Insert user with the new AddressId
-        INSERT INTO Users ([FirstName], [LastName], [NickName], [AccessToken], [RefreshToken], [IsActive], [IsAdmin], [UpdatedAt], [CreatedAt], [DateOfBirth], [Email], [PolicyCheck], [Password], [PictureUrl], [Phone], [AddressId])
-        VALUES (@FirstName, @LastName, @NickName, '', '', 1, 0, GETDATE(), GETDATE(), @DateOfBirth, @Email, @PolicyCheck, @Password, @PictureUrl, @Phone, @AddressId);
+        INSERT INTO Users ([FirstName], [LastName], [NickName], [AccessToken], [RefreshToken], [IsActive], [IsAdmin], [UpdatedAt], [CreatedAt], [DateOfBirth], [Email], [PolicyCheck], [Password], [PictureUrl], [Phone], [AddressId], [VerificationCode])
+        VALUES (@FirstName, @LastName, @NickName, '', '', 1, 0, GETDATE(), GETDATE(), @DateOfBirth, @Email, @PolicyCheck, @Password, @PictureUrl, @Phone, @AddressId, @VerificationCode);
 
         DECLARE @UserId INT = SCOPE_IDENTITY();
 
@@ -38,7 +40,7 @@ BEGIN
 
         -- Return user
         SELECT 
-            *
+            Id, IsAdmin, NickName, VerificationCode, Email
         FROM 
             Users u
         WHERE 

@@ -1,8 +1,8 @@
-﻿using System.Data;
-using CORE_PintPoint.Abstraction.IRepo;
+﻿using CORE_PintPoint.Abstraction.IRepo;
 using Dapper;
 using Domain_PintPoint.Entities;
 using Microsoft.Data.SqlClient;
+using System.Data;
 
 namespace INFRA_PintPoint.Repository
 {
@@ -45,6 +45,18 @@ namespace INFRA_PintPoint.Repository
             return _connection.Execute(storedProcedure, new { Id = idUser, Email = email }) > 0;
         }
 
+        public bool GeneratePwdCode(int id, string code)
+        {
+            string storedProcedure = "SP_GetOne_Pwd_Code";
+            return _connection.Execute(storedProcedure, new { Id = id, PasswordRestCode = code }) > 0;
+        }
+
+        public int GetIdByMail(string mail)
+        {
+            string storedProcedure = "SP_GetOne_Id_By_Mail";
+            return _connection.QuerySingleOrDefault<int>(storedProcedure, new { email = mail });
+        }
+
         public Users GetOne(int id)
         {
             string storedProcedure = "SP_GetOne_User";
@@ -84,7 +96,9 @@ namespace INFRA_PintPoint.Repository
                 IdCity = userWithAddress.IdCity,
                 Street = userWithAddress.Street,
                 HouseNumber = userWithAddress.HouseNumber,
-                PostCode = userWithAddress.PostCode
+                PostCode = userWithAddress.PostCode,
+
+                VerificationCode = userWithAddress.VerificationCode,
             };
             return _connection.QuerySingle<Users>(storedProcedure, param);
         }
@@ -95,10 +109,22 @@ namespace INFRA_PintPoint.Repository
             return _connection.Execute(storedProcedure, new { Id = idUser, Pwd = password }) > 0;
         }
 
+        public bool UpdatePasswordByCode(string code, int id, string newPassword)
+        {
+            string storedProcedure = "SP_Put_Pwd_By_Code";
+            return _connection.Execute(storedProcedure, new { Id = id, PasswordRestCode = code, Pwd = newPassword }) > 0;
+        }
+
         public bool UpdateTokenDb(int idUser, string token, string refreshToken)
         {
             string storedProcedure = "SP_UpdateToken";
             return _connection.Execute(storedProcedure, new { UserId = idUser, AccessToken = token, RefreshToken = refreshToken }) > 0;
+        }
+
+        public bool VerifyOne(string code, int id)
+        {
+            string storedProcedure = "SP_Put_Verified";
+            return _connection.Execute(storedProcedure, new { Id = id, VerificationCode = code }) > 0;
         }
     }
 }

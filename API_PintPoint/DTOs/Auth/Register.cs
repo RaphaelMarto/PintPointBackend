@@ -11,7 +11,6 @@
         public string Phone { get; set; }
         public string PictureUrl { get; set; }
         public bool PolicyCheck { get; set; }
-        public int AddressId { get; set; }
         public int IdCity { get; set; }
         public string Street { get; set; }
         public string HouseNumber { get; set; }

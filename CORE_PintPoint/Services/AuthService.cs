@@ -1,6 +1,7 @@
 ﻿using CORE_PintPoint.Abstraction.IRepo;
 using CORE_PintPoint.Abstraction.IService;
 using Domain_PintPoint.Entities;
+using System.Security.Cryptography;
 using BC = BCrypt.Net;
 
 namespace CORE_PintPoint.Services
@@ -48,6 +49,7 @@ namespace CORE_PintPoint.Services
             string salt = BC.BCrypt.GenerateSalt();
             string hashedPassword = BC.BCrypt.HashPassword(userWithAddress.Password, salt);
             userWithAddress.Password = hashedPassword;
+            userWithAddress.VerificationCode = RNG(50);
             return _AuthRepo.Register(userWithAddress);
         }
 
@@ -65,6 +67,40 @@ namespace CORE_PintPoint.Services
         public bool UpdateTokenDb(int idUser, string token, string refreshToken)
         {
             return _AuthRepo.UpdateTokenDb(idUser, token, refreshToken);
+        }
+
+        public string RNG(int size)
+        {
+            var randomNumber = new byte[size];
+            using var rng = RandomNumberGenerator.Create();
+            rng.GetBytes(randomNumber);
+            return Convert.ToBase64String(randomNumber);
+        }
+
+        public bool VerifyOne(string code, int id)
+        {
+            return _AuthRepo.VerifyOne(code, id);
+        }
+
+        public bool updatePasswordBycode(string code, int id, string newPassword)
+        {
+            Users user = this.GetOne(id);
+            if (user.PasswordResetCodeExpiration < DateTime.Now)
+            {
+                throw new Exception("Password reset code has expired");
+            }
+            string salt = BC.BCrypt.GenerateSalt();
+            return _AuthRepo.UpdatePasswordByCode(code, id, BC.BCrypt.HashPassword(newPassword, salt));
+        }
+
+        public bool GeneratePwdCode(int id)
+        {
+            return _AuthRepo.GeneratePwdCode(id, RNG(50));
+        }
+
+        public int GetIdByMail(string mail)
+        {
+            return _AuthRepo.GetIdByMail(mail);
         }
     }
 }

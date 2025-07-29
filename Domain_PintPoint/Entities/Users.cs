@@ -19,5 +19,9 @@
         public int AddressId { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+        public string? VerificationCode { get; set; }
+        public DateTime? VerifiedAt { get; set; }
+        public string? PasswordResetCode { get; set; }
+        public DateTime? PasswordResetCodeExpiration { get; set; }
     }
 }

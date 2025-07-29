@@ -117,6 +117,10 @@
     <Build Include="StoredProcess\Put\SP_Put_UserAddress.sql" />
     <Build Include="StoredProcess\Delete\SP_Account_Del.sql" />
     <Build Include="StoredProcess\Put\SP_Put_Pwd.sql" />
+    <Build Include="StoredProcess\Put\SP_Put_Verified.sql" />
+    <Build Include="StoredProcess\Put\SP_Put_Pwd_By_Code.sql" />
+    <Build Include="StoredProcess\GetOne\SP_GetOne_Pwd_Code.sql" />
+    <Build Include="StoredProcess\GetOne\SP_GetOne_Id_By_Mail.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />

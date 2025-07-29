@@ -17,6 +17,10 @@
 	[AddressId] INT NOT NULL,
 	[CreatedAt] DATETIME2 NOT NULL,
 	[UpdatedAt] DATETIME2 NOT NULL,
+	[VerificationCode] NVARCHAR(50) NULL,
+	[VerifiedAt] DATETIME2 NULL,
+	[PasswordResetCode] NVARCHAR(50) NULL,
+	[PasswordResetCodeExpiration] DATETIME2 NULL,
 
 	CONSTRAINT [FK_Users_Addresses] FOREIGN KEY ([AddressId]) REFERENCES [Addresses](Id)
 )
