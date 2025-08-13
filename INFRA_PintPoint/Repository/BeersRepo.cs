@@ -49,9 +49,24 @@ namespace INFRA_PintPoint.Service
                 IdBeerType = beers.IdBeerType,
                 IdBrewery = beers.IdBrewery,
                 PictureUrl = beers.PictureUrl,
-                Rating = beers.Rating,
-                CreatedAt = beers.CreatedAt,
-                UpdatedAt = beers.UpdatedAt,
+                BirthYear = beers.BirthYear
+            }) > 0;
+        }
+
+        public bool Update(Beers beers)
+        {
+            string storedProcedure = "SP_Put_Beer";
+            return _connection.Execute(storedProcedure, new
+            {
+                Id = beers.Id,
+                Name = beers.Name,
+                Description = beers.Description,
+                Price = beers.Price,
+                Capacity = beers.Capacity,
+                AlcoholPercent = beers.AlcoholPercent,
+                IdBeerType = beers.IdBeerType,
+                IdBrewery = beers.IdBrewery,
+                PictureUrl = beers.PictureUrl,
                 BirthYear = beers.BirthYear
             }) > 0;
         }

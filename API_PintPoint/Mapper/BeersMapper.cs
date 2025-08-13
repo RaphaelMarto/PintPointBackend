@@ -1,7 +1,6 @@
 ﻿using API_PintPoint.DTOs.Beers;
 using CORE_PintPoint.Entities;
 using Domain_PintPoint.Entities;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace API_PintPoint.Mapper
 {
@@ -59,9 +58,23 @@ namespace API_PintPoint.Mapper
                 Name = dto.Name,
                 Price = dto.Price,
                 PictureUrl = dto.PictureUrl,
-                Rating = dto.Rating,
-                CreatedAt = dto.CreatedAt,
-                UpdatedAt = dto.UpdatedAt,
+                BirthYear = dto.BirthYear,
+            };
+        }
+
+        public static Beers ToDomain(this BeerPut dto)
+        {
+            return new Beers()
+            {
+                Id = dto.Id,
+                AlcoholPercent = dto.AlcoholPercent,
+                Capacity = dto.Capacity,
+                Description = dto.Description,
+                IdBeerType = dto.IdBeerType,
+                IdBrewery = dto.IdBrewery,
+                Name = dto.Name,
+                Price = dto.Price,
+                PictureUrl = dto.PictureUrl,
                 BirthYear = dto.BirthYear,
             };
         }

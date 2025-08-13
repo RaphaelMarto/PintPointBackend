@@ -58,5 +58,12 @@ namespace API_PintPoint.Controllers
         {
             return Ok(_beersService.Post(beerPost.ToDomain()));
         }
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPut]
+        public IActionResult Update([FromBody] BeerPut beerPut)
+        {
+            return Ok(_beersService.Update(beerPut.ToDomain()));
+        }
     }
 }

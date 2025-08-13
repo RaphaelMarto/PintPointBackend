@@ -121,6 +121,7 @@
     <Build Include="StoredProcess\Put\SP_Put_Pwd_By_Code.sql" />
     <Build Include="StoredProcess\GetOne\SP_GetOne_Pwd_Code.sql" />
     <Build Include="StoredProcess\GetOne\SP_GetOne_Id_By_Mail.sql" />
+    <Build Include="StoredProcess\Put\SP_Put_Beer.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />
