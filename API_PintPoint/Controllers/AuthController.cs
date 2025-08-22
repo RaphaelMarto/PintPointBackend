@@ -35,7 +35,7 @@ namespace API_PintPoint.Controllers
 
                 Users user = _AuthService.GetOne((int)id);
                 string token = _AuthenticateService.CreateToken(user);
-                _AuthService.UpdateTokenDb(user.Id, token, user.RefreshToken);
+                _AuthService.UpdateTokenDb(user.Id, token, user.RefreshToken, login.RememberMe);
 
                 return Ok(new SuccessConnexion() { AccessToken = token, RefreshToken = user.RefreshToken, Nickname = user.NickName });
             }
@@ -52,7 +52,7 @@ namespace API_PintPoint.Controllers
             {
                 Users user = _AuthService.Register(register.ToUserAddress());
                 string token = _AuthenticateService.CreateToken(user);
-                _AuthService.UpdateTokenDb(user.Id, token, user.RefreshToken);
+                _AuthService.UpdateTokenDb(user.Id, token, user.RefreshToken, false);
                 _ = await _MailService.EmailData(user.Email, user.VerificationCode, user.Id, "Activation du compte Pintpoint.be", "Cliquez pour confirmer votre addresse email.", "http://localhost:4200/Pages/Auth/Verify/Email?code=");
                 return Ok(new SuccessConnexion() { AccessToken = token, RefreshToken = user.RefreshToken, Nickname = user.NickName });
             }
@@ -62,8 +62,8 @@ namespace API_PintPoint.Controllers
             }
         }
 
-        [HttpPost("refresh")]
-        public IActionResult Refresh(SuccessConnexion tokenResponse)
+        [HttpPost("Refresh")]
+        public IActionResult Refresh(RefreshDTO tokenResponse)
         {
             try
             {
@@ -87,7 +87,8 @@ namespace API_PintPoint.Controllers
                     }
                     else
                     {
-                        // Handle the case where the claim is not found or cannot be parsed
+                        // Handle the case where the claim is not found
+                        return BadRequest(new { ErrorMessage = "Invalid token: User ID claim not found." });
                     }
                     mesClaims = token.Claims.ToList();
                 }
@@ -96,18 +97,18 @@ namespace API_PintPoint.Controllers
                 {
                     string newAccessToken = _AuthenticateService.GenerateAccessTokenFromRefreshToken(mesClaims);
 
-                    SuccessConnexion response = new SuccessConnexion()
+                    RefreshDTO response = new RefreshDTO()
                     {
                         AccessToken = newAccessToken,
                         RefreshToken = _AuthenticateService.GenerateRefreshToken()
                     };
 
-                    _AuthService.UpdateTokenDb(id, newAccessToken, response.RefreshToken);
+                    _AuthService.UpdateRefreshTokenDb(id, response.AccessToken, response.RefreshToken);
                     return Ok(response);
                 }
                 else
                 {
-                    return BadRequest(new { ErrorMessage = "Token invalid" });
+                    return BadRequest(new { ErrorMessage = "Tokens invalid" });
                 }
             }
             catch (Exception ex)

@@ -16,7 +16,7 @@ namespace INFRA_PintPoint.Repository
 
         public bool CheckRefresh(string accessToken, string refreshToken)
         {
-            string storedProcedure = "SP_CheckRefresh";
+            string storedProcedure = "SP_Check_Refresh";
             int? UserId = _connection.QuerySingleOrDefault<int?>(storedProcedure, new { AccessToken = accessToken, RefreshToken = refreshToken });
             return UserId.HasValue;
         }
@@ -115,10 +115,16 @@ namespace INFRA_PintPoint.Repository
             return _connection.Execute(storedProcedure, new { Id = id, PasswordRestCode = code, Pwd = newPassword }) > 0;
         }
 
-        public bool UpdateTokenDb(int idUser, string token, string refreshToken)
+        public bool UpdateRefreshTokenDb(int idUser, string token, string refreshToken)
         {
-            string storedProcedure = "SP_UpdateToken";
+            string storedProcedure = "SP_Update_Refresh_Token";
             return _connection.Execute(storedProcedure, new { UserId = idUser, AccessToken = token, RefreshToken = refreshToken }) > 0;
+        }
+
+        public bool UpdateTokenDb(int idUser, string token, string refreshToken, bool rememberMe)
+        {
+            string storedProcedure = "SP_Update_Token";
+            return _connection.Execute(storedProcedure, new { UserId = idUser, AccessToken = token, RefreshToken = refreshToken, RememberMe = rememberMe }) > 0;
         }
 
         public bool VerifyOne(string code, int id)

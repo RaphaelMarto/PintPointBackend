@@ -7,7 +7,8 @@ namespace CORE_PintPoint.Abstraction.IService
         Users Register(UserWithAddress userWithAddress);
         int Login(string email, string password);
         Users GetOne(int id);
-        bool UpdateTokenDb(int idUser, string token, string refreshToken);
+        bool UpdateTokenDb(int idUser, string token, string refreshToken, bool rememberMe);
+        bool UpdateRefreshTokenDb(int idUser, string token, string refreshToken);
         bool CheckRefresh(string accessToken, string refreshToken);
         EmailNickNameExist CheckUserExists(string nickName, string email);
         bool UpdatePassword(int idUser, string password, string oldPassword, string email);

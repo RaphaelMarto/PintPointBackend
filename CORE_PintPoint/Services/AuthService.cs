@@ -64,9 +64,9 @@ namespace CORE_PintPoint.Services
             throw new Exception("Password inccorect");
         }
 
-        public bool UpdateTokenDb(int idUser, string token, string refreshToken)
+        public bool UpdateTokenDb(int idUser, string token, string refreshToken, bool rememberMe)
         {
-            return _AuthRepo.UpdateTokenDb(idUser, token, refreshToken);
+            return _AuthRepo.UpdateTokenDb(idUser, token, refreshToken, rememberMe);
         }
 
         public string RNG(int size)
@@ -101,6 +101,11 @@ namespace CORE_PintPoint.Services
         public int GetIdByMail(string mail)
         {
             return _AuthRepo.GetIdByMail(mail);
+        }
+
+        public bool UpdateRefreshTokenDb(int idUser, string token, string refreshToken)
+        {
+            return _AuthRepo.UpdateRefreshTokenDb(idUser, token, refreshToken);
         }
     }
 }

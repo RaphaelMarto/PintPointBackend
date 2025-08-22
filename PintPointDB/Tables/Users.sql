@@ -11,6 +11,7 @@
 	[PictureUrl] VARCHAR(255) NULL,
 	[AccessToken] VARCHAR(255) NULL,
 	[RefreshToken] VARCHAR(255) NULL,
+	[RefreshTokenExpiration] DATETIME2 NULL,
 	[PolicyCheck] BIT NOT NULL,
 	[IsActive] BIT NOT NULL,
 	[IsAdmin] BIT NOT NULL,

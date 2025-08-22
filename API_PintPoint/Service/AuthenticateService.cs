@@ -23,7 +23,7 @@ namespace API_PintPoint.Service
                 issuer: _config["jwt:issuer"],
                 audience: _config["jwt:audience"],
                 claims: new List<Claim>() { new Claim(ClaimTypes.Email, user.Email), new Claim(ClaimTypes.Sid, user.Id.ToString()), new Claim(ClaimTypes.Role, user.IsAdmin == true ? "Admin" : "User") },
-                expires: DateTime.Now.AddMinutes(30),
+                expires: DateTime.Now.AddMinutes(1),
                 signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
                 );
 
@@ -32,6 +32,7 @@ namespace API_PintPoint.Service
             user.RefreshToken = GenerateRefreshToken();
             return tokenToSend;
         }
+
         public string GenerateRefreshToken()
         {
             var randomNumber = new byte[32];
@@ -53,7 +54,7 @@ namespace API_PintPoint.Service
                 issuer: _config["jwt:issuer"],
                 audience: _config["jwt:audience"],
                 claims: mesClaims,
-                expires: DateTime.Now.AddMinutes(30),
+                expires: DateTime.Now.AddMinutes(1),
                 signingCredentials: new SigningCredentials(laCle, SecurityAlgorithms.HmacSha256)
 
             );
